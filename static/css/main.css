@@ -362,10 +362,11 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     color: var(--black);
 }
 
-.home .section,
-.lineup .section,
-.info .section {
+.page-home .section,
+.page-lineup .section,
+.page-info .section {
     background: #fff;
+    color: var(--black);
 }
 
 .section__title {
