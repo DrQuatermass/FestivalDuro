@@ -437,11 +437,12 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 .festival-panel {
     position: relative;
     overflow: hidden;
-    min-height: clamp(420px, 46vw, 560px);
+    min-height: 0;
     display: grid;
-    grid-template-columns: minmax(0, .82fr) minmax(320px, 1.18fr);
+    grid-template-columns: minmax(0, .95fr) minmax(280px, .68fr);
     align-items: center;
-    padding: clamp(2rem, 5vw, 4rem);
+    gap: clamp(2rem, 5vw, 4rem);
+    padding: clamp(2rem, 5vw, 4.5rem);
     background: #fff;
     border: 5px solid var(--black);
 }
@@ -449,6 +450,30 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 .festival-panel > * {
     position: relative;
     z-index: 1;
+}
+
+.festival-panel__copy {
+    max-width: 620px;
+}
+
+.festival-panel__copy .btn {
+    margin-top: .75rem;
+}
+
+.festival-panel__media {
+    width: min(100%, 380px);
+    margin: 0;
+    justify-self: end;
+    background: var(--yellow);
+    border: 5px solid var(--black);
+    box-shadow: 14px 14px 0 var(--black);
+}
+
+.festival-panel__media img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    height: auto;
+    object-fit: contain;
 }
 
 .divider { display: none !important; }
@@ -786,8 +811,17 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 
     .festival-panel {
         grid-template-columns: 1fr;
-        min-height: 0;
         background: #fff;
+    }
+
+    .festival-panel__copy {
+        max-width: none;
+    }
+
+    .festival-panel__media {
+        width: min(100%, 330px);
+        justify-self: center;
+        box-shadow: 9px 9px 0 var(--black);
     }
 
     .band-detail__grid,
@@ -838,6 +872,12 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     .festival-panel,
     .info-card {
         padding: 1.35rem;
+    }
+
+    .festival-panel__media {
+        width: min(100%, 280px);
+        border-width: 4px;
+        box-shadow: 7px 7px 0 var(--black);
     }
 
     .site-footer__bottom-inner {

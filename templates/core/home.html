@@ -75,7 +75,7 @@
 <section class="section section--festival">
     <div class="container">
         <div class="festival-panel">
-            <div>
+            <div class="festival-panel__copy">
                 <h2 class="section__title">Il Festival</h2>
                 <p class="section__lead">
                     Festival Duro torna per la sua quarta edizione: due serate imperdibili
@@ -84,6 +84,12 @@
                 </p>
                 <a href="{% url 'core:info' %}" class="btn">Scopri di pi&ugrave;</a>
             </div>
+            <figure class="festival-panel__media">
+                <img src="{% static 'img/locandina.png' %}"
+                     alt="Locandina Festival Duro 2026"
+                     width="960" height="1200"
+                     loading="lazy">
+            </figure>
         </div>
     </div>
 </section>
