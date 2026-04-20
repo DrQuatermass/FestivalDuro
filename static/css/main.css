@@ -226,14 +226,12 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     overflow: hidden;
     padding-block: clamp(4rem, 7vw, 5.75rem);
     background:
-        linear-gradient(90deg, rgba(255, 212, 0, .98), rgba(255, 212, 0, .9)),
-        url("../img/hero-bg-wide.jpg") center / cover no-repeat,
+        linear-gradient(90deg, rgba(255, 212, 0, .98), rgba(255, 212, 0, .94)),
         var(--yellow);
     border-bottom: 5px solid var(--black);
 }
 
-.hero::before,
-.hero::after {
+.hero::before {
     content: "";
     position: absolute;
     pointer-events: none;
@@ -250,16 +248,7 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
             transparent 2px 18px
         );
     mix-blend-mode: multiply;
-    opacity: .42;
-}
-
-.hero::after {
-    right: max(var(--gutter), calc((100vw - var(--max)) / 2));
-    bottom: clamp(1.2rem, 3vw, 2.5rem);
-    width: min(34vw, 430px);
-    aspect-ratio: 1;
-    background: url("../img/hero-grunge.png") center / contain no-repeat;
-    opacity: .32;
+    opacity: .24;
 }
 
 .hero__inner {
@@ -780,10 +769,6 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
         min-height: auto;
         padding-block: clamp(3rem, 12vw, 5rem);
         background: var(--yellow);
-    }
-
-    .hero::after {
-        display: none;
     }
 
     .hero__inner,
