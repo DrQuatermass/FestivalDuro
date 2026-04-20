@@ -358,7 +358,14 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 }
 
 .section--festival {
-    background: #fff;
+    background: var(--black);
+    color: var(--bone);
+}
+
+.home .section,
+.lineup .section,
+.info .section {
+    background: var(--black);
 }
 
 .section__title {
