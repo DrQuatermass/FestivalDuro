@@ -377,7 +377,6 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 .page-info .hero + .section,
 .page-info .divider + .section {
     border-top: 10px solid #fff;
-    box-shadow: inset 0 5px 0 var(--black);
     padding-top: clamp(3rem, 5vw, 4.5rem);
 }
 
