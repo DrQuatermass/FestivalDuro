@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}band-detail{% endblock %}
+
+{% block content %}
+<section class="section section--dark band-detail">
+    <div class="container">
+        <p class="back-link">
+            <a href="{% url 'core:lineup' %}">&larr; Torna alla line-up</a>
+        </p>
+        <h1>{{ band.nome }}</h1>
+        {% if band.headliner %}
+        <span class="hero__kicker hero__kicker--inverse">Headliner</span>
+        {% endif %}
+
+        <div class="band-detail__grid">
+            <div>
+                {% if band.foto %}
+                <img src="{{ band.foto.url }}" alt="{{ band.nome }}" class="band-detail__photo">
+                {% endif %}
+            </div>
+            <div>
+                {% if band.giorno %}
+                <p><strong>Sul palco:</strong> {{ band.giorno|date:"l j F Y"|capfirst }}{% if band.orario %} ore {{ band.orario|time:"H:i" }}{% endif %}</p>
+                {% endif %}
+                <div>{{ band.bio|linebreaks }}</div>
+                <ul class="social-list band-detail__links">
+                    {% if band.sito_web %}<li><a href="{{ band.sito_web }}" rel="noopener">Sito web</a></li>{% endif %}
+                    {% if band.instagram %}<li><a href="{{ band.instagram }}" rel="noopener">Instagram</a></li>{% endif %}
+                    {% if band.spotify %}<li><a href="{{ band.spotify }}" rel="noopener">Spotify</a></li>{% endif %}
+                    {% if band.youtube %}<li><a href="{{ band.youtube }}" rel="noopener">YouTube</a></li>{% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

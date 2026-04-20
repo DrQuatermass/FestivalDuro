@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}info{% endblock %}
+
+{% block content %}
+<section class="hero page-hero">
+    <div class="container hero__inner">
+        <img src="{% static 'img/logo-black-wide-1200.png' %}"
+             alt="Festival Duro"
+             width="1200" height="120"
+             class="hero__logo hero__logo--wide">
+        <span class="hero__kicker">Tutto quello che ti serve</span>
+        <h1 class="section__title">Info &amp; Venue</h1>
+    </div>
+</section>
+
+<div class="divider divider--lights" aria-hidden="true"></div>
+
+<section class="section">
+    <div class="container">
+        <div class="info-grid">
+            {% if venue %}
+            <div class="info-card">
+                <h3>Location</h3>
+                <p>
+                    <strong>{{ venue.nome }}</strong><br>
+                    {{ venue.indirizzo }}<br>
+                    {{ venue.cap }} {{ venue.citta }} {% if venue.provincia %}({{ venue.provincia }}){% endif %}
+                </p>
+                {% if venue.google_maps_url %}
+                <a href="{{ venue.google_maps_url }}" class="btn" rel="noopener">Apri mappa</a>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            {% if edizione %}
+            <div class="info-card">
+                <h3>Date</h3>
+                <p>
+                    <strong>{{ edizione.data_inizio|date:"l j F Y"|capfirst }}</strong><br>
+                    <strong>{{ edizione.data_fine|date:"l j F Y"|capfirst }}</strong>
+                </p>
+                {% if edizione.biglietti_url %}
+                <a href="{{ edizione.biglietti_url }}" class="btn" rel="noopener">Biglietti</a>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="info-card">
+                <h3>Contatti</h3>
+                <p>
+                    Per info, prenotazioni o richieste di backstage scrivi a<br>
+                    <strong>info@festivalduro.it</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if faq_list %}
+<div class="divider divider--palco" aria-hidden="true"></div>
+
+<section class="section section--dark">
+    <div class="container">
+        <h2 class="section__title">FAQ</h2>
+        <ul class="faq-list">
+            {% for faq in faq_list %}
+            <li>
+                <details class="faq-item">
+                    <summary>{{ faq.domanda }}</summary>
+                    <p>{{ faq.risposta|linebreaks }}</p>
+                </details>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

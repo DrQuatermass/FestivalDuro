@@ -1,0 +1,9 @@
+# Django 5.2+ richiesto per compatibilità con Python 3.13 e 3.14
+Django>=5.2,<6.0
+Pillow>=10.0
+python-decouple>=3.8
+whitenoise>=6.6
+# Produzione
+dj-database-url>=2.1
+psycopg2-binary>=2.9
+gunicorn>=21.0

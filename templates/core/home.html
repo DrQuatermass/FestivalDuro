@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}home{% endblock %}
+
+{% block content %}
+<section class="hero hero--home">
+    <div class="container hero__inner">
+        {% if edizione %}
+        <span class="hero__kicker">{{ edizione.numero }}&ordf; Edizione - Music Fest</span>
+        {% else %}
+        <span class="hero__kicker">Music Fest</span>
+        {% endif %}
+
+        <h1 class="hero__title">
+            <img src="{% static 'img/logo-black-wide-1200.png' %}"
+                 alt="Festival Duro"
+                 width="1200" height="360"
+                 class="hero__logo hero__logo--wide">
+            <span class="visually-hidden">Festival Duro</span>
+        </h1>
+
+        <div class="hero__meta">
+            {% if edizione %}
+            <div>
+                <span>Quando</span>
+                <strong>{{ edizione.data_inizio|date:"j" }}-{{ edizione.data_fine|date:"j F Y" }}</strong>
+            </div>
+            <div>
+                <span>Dove</span>
+                <strong>{{ edizione.venue.nome }}</strong>
+                <span>{{ edizione.venue.indirizzo }}, {{ edizione.venue.citta }}</span>
+            </div>
+            {% else %}
+            <div>
+                <strong>Prossima edizione in arrivo</strong>
+                <span>Resta connesso sui nostri canali social</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="hero__cta">
+            <a href="{% url 'core:lineup' %}" class="btn">Vedi line-up</a>
+            {% if edizione.biglietti_url %}
+            <a href="{{ edizione.biglietti_url }}" class="btn btn--ghost" rel="noopener">Biglietti</a>
+            {% else %}
+            <a href="{% url 'core:info' %}" class="btn btn--ghost">Info &amp; Venue</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% if headliners %}
+<section class="section section--dark">
+    <div class="container">
+        <h2 class="section__title">Headliner</h2>
+        <div class="lineup-grid">
+            {% for band in headliners %}
+            <a href="{{ band.get_absolute_url }}" class="band-card">
+                <span class="band-card__headliner">Headliner</span>
+                <div class="band-card__img">
+                    {% if band.foto %}<img src="{{ band.foto.url }}" alt="{{ band.nome }}">{% endif %}
+                </div>
+                <h3 class="band-card__name">{{ band.nome }}</h3>
+                {% if band.giorno %}
+                <p class="band-card__meta">{{ band.giorno|date:"l j F"|capfirst }}{% if band.orario %} - {{ band.orario|time:"H:i" }}{% endif %}</p>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="section section--festival">
+    <div class="container">
+        <div class="festival-panel">
+            <div>
+                <h2 class="section__title">Il Festival</h2>
+                <p class="section__lead">
+                    Festival Duro torna per la sua quarta edizione: due serate imperdibili
+                    di musica live, energia e adrenalina. Vieni a vivere l'esperienza pi&ugrave;
+                    intensa dell'estate modenese.
+                </p>
+                <a href="{% url 'core:info' %}" class="btn">Scopri di pi&ugrave;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}cookie-policy{% endblock %}
+
+{% block content %}
+<section class="hero page-hero page-hero--compact">
+    <div class="container hero__inner">
+        <span class="hero__kicker">Informativa</span>
+        <h1 class="section__title">Cookie Policy</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container legal-content">
+        <p class="legal-lead">
+            I cookie sono piccoli file di testo che i siti visitati inviano al
+            browser dell'utente, dove vengono memorizzati per essere ritrasmessi
+            agli stessi siti alla visita successiva.
+        </p>
+
+        <h2>Cookie utilizzati da questo sito</h2>
+        <p>
+            Festival Duro utilizza <strong>esclusivamente cookie tecnici di sessione</strong>,
+            necessari al corretto funzionamento del sito e all'erogazione del servizio.
+            Per questi cookie, secondo la normativa vigente
+            (<a href="https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/3118884"
+               rel="noopener" target="_blank">provvedimento del Garante dell'8 maggio 2014</a>
+            e successive linee guida), non è richiesto il consenso preventivo.
+        </p>
+
+        <h2>Dettaglio cookie</h2>
+        <div class="cookie-table-wrap">
+            <table class="cookie-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Finalità</th>
+                        <th>Durata</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>sessionid</code></td>
+                        <td>Tecnico</td>
+                        <td>Mantiene la sessione utente lato server</td>
+                        <td>Sessione</td>
+                    </tr>
+                    <tr>
+                        <td><code>csrftoken</code></td>
+                        <td>Tecnico</td>
+                        <td>Protezione contro attacchi CSRF nei form</td>
+                        <td>1 anno</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Cookie di profilazione e di terze parti</h2>
+        <p>
+            Questo sito <strong>non utilizza</strong> cookie di profilazione né
+            cookie di terze parti per finalità di marketing o analisi comportamentale.
+            Tutti i font e gli asset sono ospitati direttamente sul nostro dominio:
+            nessun trasferimento di dati verso Paesi extra-UE.
+        </p>
+
+        <h2>Come gestire i cookie</h2>
+        <p>
+            Puoi gestire o disabilitare i cookie direttamente dalle impostazioni del
+            tuo browser. La disattivazione dei cookie tecnici può compromettere la
+            corretta fruizione del sito. Di seguito i link alle istruzioni dei
+            browser più diffusi:
+        </p>
+        <ul>
+            <li><a href="https://support.google.com/chrome/answer/95647" rel="noopener" target="_blank">Google Chrome</a></li>
+            <li><a href="https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie" rel="noopener" target="_blank">Mozilla Firefox</a></li>
+            <li><a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" rel="noopener" target="_blank">Apple Safari</a></li>
+            <li><a href="https://support.microsoft.com/it-it/microsoft-edge/" rel="noopener" target="_blank">Microsoft Edge</a></li>
+        </ul>
+
+        <h2>Per maggiori informazioni</h2>
+        <p>
+            Consulta la nostra <a href="{% url 'core:privacy' %}">Privacy Policy</a>
+            o scrivi a <a href="mailto:info@festivalduro.it">info@festivalduro.it</a>.
+        </p>
+
+        <p class="legal-updated">
+            Ultimo aggiornamento: {% now "j F Y" %}
+        </p>
+    </div>
+</section>
+{% endblock %}

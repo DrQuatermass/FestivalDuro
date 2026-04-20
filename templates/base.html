@@ -1,0 +1,168 @@
+{% load static %}<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {# SEO #}
+    <title>{% block title %}{{ page_title|default:"Festival Duro - Music Fest" }}{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}{{ meta_description|default:seo_default_description }}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{{ seo_default_keywords }}{% endblock %}">
+    <meta name="author" content="Festival Duro">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{% block canonical %}https://{{ site_domain }}{{ request.path }}{% endblock %}">
+
+    {# Open Graph #}
+    <meta property="og:title" content="{% block og_title %}{{ page_title|default:site_name }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ meta_description|default:seo_default_description }}{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:site_name" content="{{ site_name }}">
+    <meta property="og:image" content="{% block og_image %}{% static 'img/og-cover.png' %}{% endblock %}">
+
+    {# Twitter #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block tw_title %}{{ page_title|default:site_name }}{% endblock %}">
+    <meta name="twitter:description" content="{% block tw_description %}{{ meta_description|default:seo_default_description }}{% endblock %}">
+
+    {# Favicon #}
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+    <meta name="theme-color" content="#FFD400">
+
+    {# Fonts self-hosted - no CDN, no GDPR transfer issues #}
+    <link rel="preload" href="{% static 'fonts/bungee-inline.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{% static 'fonts/rubik-mono-one.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{% static 'fonts/inter-400.woff2' %}" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    {# Schema.org JSON-LD evento #}
+    {% if edizione_corrente %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicFestival",
+        "name": "Festival Duro - {{ edizione_corrente.numero }}ª Edizione",
+        "startDate": "{{ edizione_corrente.data_inizio|date:'Y-m-d' }}",
+        "endDate": "{{ edizione_corrente.data_fine|date:'Y-m-d' }}",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+            "@type": "Place",
+            "name": "{{ edizione_corrente.venue.nome }}",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "{{ edizione_corrente.venue.indirizzo }}",
+                "addressLocality": "{{ edizione_corrente.venue.citta }}",
+                "addressCountry": "IT"
+            }
+        },
+        "organizer": {
+            "@type": "Organization",
+            "name": "Festival Duro",
+            "url": "https://{{ site_domain }}"
+        }
+    }
+    </script>
+    {% endif %}
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="page-{% block body_class %}default{% endblock %}">
+
+    <a href="#main" class="skip-link">Salta al contenuto</a>
+
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a href="{% url 'core:home' %}" class="brand" aria-label="Festival Duro - homepage">
+                <img src="{% static 'img/logo-yellow-wide.png' %}"
+                     alt="Festival Duro"
+                     width="562" height="56"
+                     class="brand__logo brand__logo--wide">
+                <img src="{% static 'img/logo-yellow-stack.png' %}"
+                     alt="Festival Duro"
+                     width="753" height="360"
+                     class="brand__logo brand__logo--stack">
+            </a>
+
+            <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Apri menu">
+                <span class="nav-toggle__label">Menu</span>
+                <span class="nav-toggle__icon" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                </span>
+            </button>
+
+            <nav id="primary-nav" class="site-nav" aria-label="Navigazione principale">
+                <ul>
+                    <li><a href="{% url 'core:home' %}">Home</a></li>
+                    <li><a href="{% url 'core:lineup' %}">Line-up</a></li>
+                    <li><a href="{% url 'core:info' %}">Info &amp; Venue</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container site-footer__grid">
+            <div class="site-footer__brand">
+                <img src="{% static 'img/logo-yellow-stack.png' %}"
+                     alt="Festival Duro"
+                     width="753" height="360"
+                     class="site-footer__logo">
+            </div>
+
+            <div>
+                <h3>Quando</h3>
+                {% if edizione_corrente %}
+                <p>{{ edizione_corrente.data_inizio|date:"j F" }} &amp;
+                   {{ edizione_corrente.data_fine|date:"j F Y" }}</p>
+                {% else %}
+                <p>Prossima edizione in arrivo</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <h3>Dove</h3>
+                {% if edizione_corrente %}
+                <p>
+                    {{ edizione_corrente.venue.nome }}<br>
+                    {{ edizione_corrente.venue.indirizzo }}<br>
+                    {{ edizione_corrente.venue.citta }}
+                </p>
+                {% endif %}
+            </div>
+
+            <div>
+                <h3>Social</h3>
+                <ul class="social-list">
+                    <li><a href="#" rel="noopener">Instagram</a></li>
+                    <li><a href="#" rel="noopener">Facebook</a></li>
+                    <li><a href="#" rel="noopener">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-footer__bottom">
+            <div class="container site-footer__bottom-inner">
+                <p>&copy; {% now "Y" %} Festival Duro. Tutti i diritti riservati.</p>
+                <nav class="legal-links" aria-label="Link legali">
+                    <a href="{% url 'core:privacy' %}">Privacy</a>
+                    <span aria-hidden="true">·</span>
+                    <a href="{% url 'core:cookie_policy' %}">Cookie</a>
+                </nav>
+                <p class="credits">
+                    Sito realizzato da
+                    <a href="https://ombradelportico.it" target="_blank" rel="noopener">Ombra del Portico</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}" defer></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

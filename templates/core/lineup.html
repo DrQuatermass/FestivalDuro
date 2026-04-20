@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}lineup{% endblock %}
+
+{% block content %}
+<section class="hero page-hero">
+    <div class="container hero__inner">
+        <img src="{% static 'img/logo-black-wide-1200.png' %}"
+             alt="Festival Duro"
+             width="1200" height="120"
+             class="hero__logo hero__logo--wide">
+        <span class="hero__kicker">Line-up {{ edizione.data_inizio|date:"Y"|default:"" }}</span>
+        <h1 class="section__title">Line-up</h1>
+        <p class="hero__sub">Tutte le band sul palco</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if band_list %}
+        <div class="lineup-grid">
+            {% for band in band_list %}
+            <a href="{{ band.get_absolute_url }}" class="band-card">
+                {% if band.headliner %}
+                <span class="band-card__headliner">Headliner</span>
+                {% endif %}
+                <div class="band-card__img">
+                    {% if band.foto %}
+                        <img src="{{ band.foto.url }}" alt="Foto {{ band.nome }}">
+                    {% endif %}
+                </div>
+                <h3 class="band-card__name">{{ band.nome }}</h3>
+                {% if band.giorno %}
+                <p class="band-card__meta">
+                    {{ band.giorno|date:"l j F"|capfirst }}{% if band.orario %} - {{ band.orario|time:"H:i" }}{% endif %}
+                </p>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">
+            La line-up sar&agrave; annunciata a breve. Resta connesso sui nostri canali
+            social per tutti gli aggiornamenti!
+        </p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
