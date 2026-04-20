@@ -20,6 +20,9 @@ ALLOWED_HOSTS = config(
 SITE_DOMAIN = config("SITE_DOMAIN", default="localhost:8000")
 SITE_NAME = "Festival Duro"
 SITE_TAGLINE = "Hard Rock. Harder Cock."
+GOOGLE_ANALYTICS_ID = config("GOOGLE_ANALYTICS_ID", default="")
+GOOGLE_SITE_VERIFICATION = config("GOOGLE_SITE_VERIFICATION", default="")
+ENABLE_ANALYTICS = config("ENABLE_ANALYTICS", default=not DEBUG, cast=bool)
 
 # Application definition
 DJANGO_APPS = [

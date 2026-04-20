@@ -10,6 +10,9 @@
     <meta name="keywords" content="{% block meta_keywords %}{{ seo_default_keywords }}{% endblock %}">
     <meta name="author" content="Festival Duro">
     <meta name="robots" content="index, follow">
+    {% if google_site_verification %}
+    <meta name="google-site-verification" content="{{ google_site_verification }}">
+    {% endif %}
     <link rel="canonical" href="{% block canonical %}https://{{ site_domain }}{{ request.path }}{% endblock %}">
 
     {# Open Graph #}
@@ -64,6 +67,18 @@
             "url": "https://{{ site_domain }}"
         }
     }
+    </script>
+    {% endif %}
+
+    {% if enable_analytics and google_analytics_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag("js", new Date());
+        gtag("config", "{{ google_analytics_id }}", {
+            anonymize_ip: true
+        });
     </script>
     {% endif %}
 
