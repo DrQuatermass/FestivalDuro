@@ -1,72 +1,63 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block body_class %}info{% endblock %}
+{% block body_class %}lineup{% endblock %}
 
 {% block content %}
 <section class="hero page-hero">
     <div class="container hero__inner">
-        <span class="hero__kicker">Tutto quello che ti serve</span>
-        <h1 class="hero__title" style="font-size: clamp(2.5rem, 6vw, 4.5rem);">Info &amp; Venue</h1>
+        <img src="{% static 'img/logo-black-wide-1200.png' %}"
+             alt="Festival Duro"
+             width="1200" height="120"
+             class="hero__logo hero__logo--wide">
+        <span class="hero__kicker">Line-up 2026</span>
+        <h1 class="section__title">Line-up</h1>
     </div>
 </section>
+
+<div class="divider divider--lights" aria-hidden="true"></div>
 
 <section class="section">
     <div class="container">
-        <div class="info-grid">
-            {% if venue %}
-            <div class="info-card">
-                <h3>Location</h3>
-                <p>
-                    <strong>{{ venue.nome }}</strong><br>
-                    {{ venue.indirizzo }}<br>
-                    {{ venue.cap }} {{ venue.citta }} {% if venue.provincia %}({{ venue.provincia }}){% endif %}
-                </p>
-                {% if venue.google_maps_url %}
-                <a href="{{ venue.google_maps_url }}" class="btn" rel="noopener">Apri mappa</a>
+        {% if band_list %}
+        <div class="lineup-grid">
+            {% for band in band_list %}
+            <a href="{{ band.get_absolute_url }}" class="band-card">
+                {% if band.headliner %}
+                <span class="band-card__headliner">Headliner</span>
                 {% endif %}
-            </div>
-            {% endif %}
-
-            {% if edizione %}
-            <div class="info-card">
-                <h3>Date</h3>
-                <p>
-                    <strong>{{ edizione.data_inizio|date:"l j F Y"|capfirst }}</strong><br>
-                    <strong>{{ edizione.data_fine|date:"l j F Y"|capfirst }}</strong>
+                <div class="band-card__img">
+                    {% if band.foto %}
+                    <img src="{{ band.foto.url }}" alt="{{ band.nome }}">
+                    {% endif %}
+                </div>
+                <h2 class="band-card__name">{{ band.nome }}</h2>
+                {% if band.giorno %}
+                <p class="band-card__meta">
+                    {{ band.giorno|date:"l j F"|capfirst }}{% if band.orario %} - {{ band.orario|time:"H:i" }}{% endif %}
                 </p>
-                {% if edizione.biglietti_url %}
-                <a href="{{ edizione.biglietti_url }}" class="btn" rel="noopener">Biglietti</a>
                 {% endif %}
-            </div>
-            {% endif %}
-
-            <div class="info-card">
-                <h3>Contatti</h3>
-                <p>
-                    Per info, prenotazioni o richieste di backstage scrivi a<br>
-                    <strong>info@festivalduro.it</strong>
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-{% if faq_list %}
-<section class="section section--dark">
-    <div class="container">
-        <h2 class="section__title">FAQ</h2>
-        <ul class="faq-list">
-            {% for faq in faq_list %}
-            <li>
-                <details class="faq-item">
-                    <summary>{{ faq.domanda }}</summary>
-                    <p>{{ faq.risposta|linebreaks }}</p>
-                </details>
-            </li>
+            </a>
             {% endfor %}
-        </ul>
+        </div>
+        {% else %}
+        <div class="festival-panel">
+            <div class="festival-panel__copy">
+                <h2 class="section__title">Line-up in arrivo</h2>
+                <p class="section__lead">
+                    La line-up sarà annunciata a breve. Resta connesso sui nostri canali
+                    social per tutti gli aggiornamenti.
+                </p>
+                <a href="{% url 'core:info' %}" class="btn">Info &amp; Venue</a>
+            </div>
+            <figure class="festival-panel__media">
+                <img src="{% static 'img/locandina.png' %}"
+                     alt="Locandina Festival Duro 2026"
+                     width="960" height="1200"
+                     loading="lazy">
+            </figure>
+        </div>
+        {% endif %}
     </div>
 </section>
-{% endif %}
 {% endblock %}
