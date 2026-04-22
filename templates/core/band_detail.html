@@ -26,10 +26,47 @@
                 {% endif %}
                 <div>{{ band.bio|linebreaks }}</div>
                 <ul class="social-list band-detail__links">
-                    {% if band.sito_web %}<li><a href="{{ band.sito_web }}" rel="noopener">Sito web</a></li>{% endif %}
-                    {% if band.instagram %}<li><a href="{{ band.instagram }}" rel="noopener">Instagram</a></li>{% endif %}
-                    {% if band.spotify %}<li><a href="{{ band.spotify }}" rel="noopener">Spotify</a></li>{% endif %}
-                    {% if band.youtube %}<li><a href="{{ band.youtube }}" rel="noopener">YouTube</a></li>{% endif %}
+                    {% if band.sito_web %}
+                    <li>
+                        <a href="{{ band.sito_web }}" target="_blank" rel="noopener" aria-label="Sito web di {{ band.nome }}" title="Sito web">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M3 12h18M12 3c2.4 2.6 3.6 5.6 3.6 9s-1.2 6.4-3.6 9M12 3c-2.4 2.6-3.6 5.6-3.6 9s1.2 6.4 3.6 9"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if band.instagram %}
+                    <li>
+                        <a href="{{ band.instagram }}" target="_blank" rel="noopener" aria-label="Instagram di {{ band.nome }}" title="Instagram">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+                                <circle cx="12" cy="12" r="3.5"></circle>
+                                <path d="M17.5 6.8h.01"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if band.spotify %}
+                    <li>
+                        <a href="{{ band.spotify }}" target="_blank" rel="noopener" aria-label="Spotify di {{ band.nome }}" title="Spotify">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M7.8 10.1c3.1-.8 6-.5 8.6.9M8.4 13c2.4-.6 4.8-.4 7 .7M9 15.7c1.8-.4 3.5-.3 5.1.5"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if band.youtube %}
+                    <li>
+                        <a href="{{ band.youtube }}" target="_blank" rel="noopener" aria-label="YouTube di {{ band.nome }}" title="YouTube">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <rect x="3.5" y="6.5" width="17" height="11" rx="3"></rect>
+                                <path d="M10.5 9.5v5l4.5-2.5-4.5-2.5z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

@@ -674,16 +674,35 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 .band-detail__links {
     margin-top: 1.25rem;
     display: flex;
-    gap: 1rem;
+    gap: .75rem;
     flex-wrap: wrap;
 }
 
 .band-detail__links a {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: var(--yellow);
+    border: 3px solid currentColor;
+    transition: background 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 .band-detail__links a:hover {
-    color: var(--bone);
+    background: var(--yellow);
+    color: var(--black);
+    transform: translateY(-2px);
+}
+
+.band-detail__links svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 /* ============ FOOTER ============ */
