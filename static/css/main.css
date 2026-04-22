@@ -385,8 +385,8 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 
 /* PAGE hero: più compatto, logo + kicker + titolo */
 .page-hero {
-    --hero-deco-top-width: clamp(150px, 18vw, 280px);
-    --hero-deco-bottom-width: clamp(110px, 10vw, 180px);
+    --hero-deco-top-width: clamp(180px, 21vw, 340px);
+    --hero-deco-bottom-width: clamp(135px, 12vw, 220px);
     padding-block: clamp(2rem, 4vw, 3rem);
 }
 
@@ -867,8 +867,8 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     }
 
     .page-hero {
-        --hero-deco-top-width: clamp(100px, 26vw, 150px);
-        --hero-deco-bottom-width: clamp(90px, 22vw, 130px);
+        --hero-deco-top-width: clamp(120px, 30vw, 175px);
+        --hero-deco-bottom-width: clamp(105px, 25vw, 155px);
     }
 
     .page-hero::before {
