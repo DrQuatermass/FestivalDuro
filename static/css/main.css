@@ -944,6 +944,13 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     }
 }
 
+@media (max-width: 768px) {
+    .hero::before,
+    .hero::after {
+        display: none;
+    }
+}
+
 @media (max-width: 520px) {
     .brand__logo--wide { display: none; }
 
@@ -971,11 +978,6 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 
     .page-hero .hero__logo {
         max-width: 260px;
-    }
-
-    .hero::before,
-    .hero::after {
-        display: none;
     }
 
     .hero__kicker {
