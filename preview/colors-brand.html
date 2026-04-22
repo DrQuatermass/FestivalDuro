@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css"><style>
+.swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.sw { display: flex; flex-direction: column; gap: 6px; }
+.sw__block { height: 90px; border: 3px solid var(--duro-black); }
+.sw__name { font-family: var(--font-display); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.sw__hex { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--duro-grey); }
+</style></head><body><div class="card">
+  <div class="swatches">
+    <div class="sw"><div class="sw__block" style="background:#ffd400"></div><div class="sw__name">Yellow</div><div class="sw__hex">#FFD400 · --duro-yellow</div></div>
+    <div class="sw"><div class="sw__block" style="background:#050505"></div><div class="sw__name">Black</div><div class="sw__hex">#050505 · --duro-black</div></div>
+    <div class="sw"><div class="sw__block" style="background:#f5f1e6"></div><div class="sw__name">Bone</div><div class="sw__hex">#F5F1E6 · --duro-bone</div></div>
+    <div class="sw"><div class="sw__block" style="background:#898989"></div><div class="sw__name">Grey</div><div class="sw__hex">#898989 · --duro-grey</div></div>
+  </div>
+</div></body></html>

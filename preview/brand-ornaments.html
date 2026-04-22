@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="_card.css">
+  <style>
+    .card { padding: 0; min-height: 0; background: var(--duro-yellow); }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 3px solid var(--duro-black);
+    }
+    .row:last-child { border-bottom: 0; }
+    .cell {
+      position: relative;
+      overflow: hidden;
+      background: var(--duro-yellow);
+      border-right: 3px solid var(--duro-black);
+    }
+    .cell:last-child { border-right: 0; }
+
+    /* top row: horizontal ornaments, 2:1 each */
+    .row--top .cell { aspect-ratio: 2 / 1; }
+    /* bottom row: more portrait for guitar + mic */
+    .row--bot .cell { aspect-ratio: 3 / 2; }
+
+    .cell img {
+      position: absolute;
+      display: block;
+      pointer-events: none;
+    }
+
+    /* TL: hang from top, aligned left */
+    .c-tl img { top: 0; left: 0; width: 95%; }
+    /* TR: hang from top, aligned right */
+    .c-tr img { top: 0; right: 0; width: 85%; }
+    /* BL: guitar neck — keep whole headstock visible, anchor bottom-left, contain */
+    .c-bl img {
+      bottom: 0; left: 0;
+      height: 96%;
+      width: auto;
+    }
+    /* BR: mic — anchor bottom-right, contain, leave breathing room */
+    .c-br img {
+      bottom: 0; right: 4%;
+      height: 92%;
+      width: auto;
+    }
+
+    .cell__label {
+      position: absolute;
+      padding: 4px 7px;
+      background: var(--duro-black);
+      color: var(--duro-yellow);
+      font-family: var(--font-display);
+      font-size: 9px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      z-index: 3;
+    }
+    /* keep labels out of the ornament's visual weight */
+    .c-tl .cell__label { bottom: 8px; left: 8px; }
+    .c-tr .cell__label { bottom: 8px; right: 8px; }
+    .c-bl .cell__label { top: 8px; right: 8px; }
+    .c-br .cell__label { top: 8px; left: 8px; }
+
+    .cell__role {
+      position: absolute;
+      font-family: var(--font-body);
+      font-size: 9px;
+      color: var(--duro-black);
+      opacity: .55;
+      letter-spacing: .06em;
+      z-index: 2;
+    }
+    .c-tl .cell__role { bottom: 10px; right: 10px; }
+    .c-tr .cell__role { bottom: 10px; left: 10px; }
+    .c-bl .cell__role { top: 10px; left: 10px; }
+    .c-br .cell__role { top: 10px; right: 10px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="row row--top">
+      <div class="cell c-tl">
+        <img src="../assets/hero-corner-tl.png" alt="">
+        <span class="cell__label">TL · string lights</span>
+        <span class="cell__role">hero top-left border</span>
+      </div>
+      <div class="cell c-tr">
+        <img src="../assets/hero-corner-tr.png" alt="">
+        <span class="cell__label">TR · foliage + lantern</span>
+        <span class="cell__role">hero top-right border</span>
+      </div>
+    </div>
+    <div class="row row--bot">
+      <div class="cell c-bl">
+        <img src="../assets/hero-corner-bl.png" alt="">
+        <span class="cell__label">BL · guitar neck</span>
+        <span class="cell__role">hero bottom-left accent</span>
+      </div>
+      <div class="cell c-br">
+        <img src="../assets/hero-corner-br.png" alt="">
+        <span class="cell__label">BR · vintage mic</span>
+        <span class="cell__role">hero bottom-right accent</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

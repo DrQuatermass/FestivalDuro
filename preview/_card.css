@@ -1,0 +1,35 @@
+/* Preview card baseline — isolation + sane defaults */
+@import url("../colors_and_type.css");
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--duro-yellow);
+  color: var(--duro-black);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+.card {
+  width: 700px;
+  min-height: 150px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.row { display: flex; gap: 12px; align-items: stretch; flex-wrap: wrap; }
+.col { display: flex; flex-direction: column; gap: 6px; }
+.tick { font-family: var(--font-display); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--duro-black); }
+.tick--muted { color: var(--duro-grey); }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: var(--duro-black);
+  color: var(--duro-yellow);
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}

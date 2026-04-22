@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css"><style>
+.step{display:flex;align-items:center;gap:12px}
+.bar{background:var(--duro-black);height:18px}
+.lbl{font-family:var(--font-display);font-size:11px;letter-spacing:.1em;text-transform:uppercase;min-width:110px}
+.val{font-family:ui-monospace,monospace;font-size:11px;color:var(--duro-grey)}
+</style></head><body><div class="card">
+  <div class="tick tick--muted">Stack spacing scale</div>
+  <div class="step"><span class="lbl">stack-xs</span><div class="bar" style="width:8px"></div><span class="val">.5rem · 8px</span></div>
+  <div class="step"><span class="lbl">stack-sm</span><div class="bar" style="width:12px"></div><span class="val">.75rem · 12px</span></div>
+  <div class="step"><span class="lbl">stack-md</span><div class="bar" style="width:16px"></div><span class="val">1rem · 16px</span></div>
+  <div class="step"><span class="lbl">stack-lg</span><div class="bar" style="width:24px"></div><span class="val">1.5rem · 24px</span></div>
+  <div class="step"><span class="lbl">stack-xl</span><div class="bar" style="width:40px"></div><span class="val">2.5rem · 40px</span></div>
+  <div class="step"><span class="lbl">section</span><div class="bar" style="width:108px"></div><span class="val">clamp(4rem, 8vw, 6.75rem)</span></div>
+</div></body></html>

@@ -1,0 +1,196 @@
+/* =================================================================
+   FESTIVAL DURO — Colors & Type Foundations
+   Sistema grafico rock/punk per il festival musicale live a Modena.
+   Yellow × Black. Grit, mic, neon. Italiano.
+================================================================= */
+
+/* ---------- FONTS (self-hosted, mirroring the Django project) ---- */
+
+@font-face {
+  font-family: "Rubik Mono One";
+  src: url("fonts/rubik-mono-one.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bungee Inline";
+  src: url("fonts/bungee-inline.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/inter-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/inter-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/inter-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ========== COLORS — BRAND ========== */
+  --duro-yellow: #ffd400;     /* the yellow. Loud, sodium-lamp, non-negotiable */
+  --duro-black:  #050505;     /* near-black, slightly softer than pure #000 */
+  --duro-bone:   #f5f1e6;     /* warm off-white used on dark sections */
+  --duro-grey:   #898989;     /* muted meta / captions */
+  --duro-line:   rgba(5, 5, 5, 0.18);   /* hairline on light bg */
+  --duro-line-inverse: rgba(255, 212, 0, 0.20); /* hairline on dark bg */
+
+  /* ========== COLORS — SEMANTIC ========== */
+  --bg:           var(--duro-yellow);
+  --bg-dark:      var(--duro-black);
+  --bg-surface:   #ffffff;            /* white panels on yellow */
+  --bg-card:      var(--duro-bone);   /* card surface */
+
+  --fg1:          var(--duro-black);  /* primary text on yellow / white */
+  --fg2:          var(--duro-grey);   /* secondary / meta */
+  --fg-inverse:   var(--duro-yellow); /* text on black */
+  --fg-inverse-2: var(--duro-bone);
+
+  --accent:       var(--duro-yellow); /* default accent */
+  --accent-on:    var(--duro-black);  /* text on accent */
+
+  --border:       var(--duro-black);  /* heavy borders are a motif */
+  --border-inverse: var(--duro-yellow);
+
+  /* ========== TYPE FAMILIES ========== */
+  --font-display: "Rubik Mono One", Impact, "Arial Black", sans-serif;
+  --font-decor:   "Bungee Inline", "Rubik Mono One", Impact, sans-serif;
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* ========== TYPE SCALE (fluid clamp) ========== */
+  --fs-h1: clamp(2.2rem, 7vw, 5.5rem);
+  --fs-h2: clamp(2rem, 5vw, 3.5rem);
+  --fs-h3: clamp(1.15rem, 2.5vw, 1.6rem);
+  --fs-lead: clamp(1rem, 1.7vw, 1.15rem);
+  --fs-body: 1rem;       /* 16px */
+  --fs-small: .85rem;
+  --fs-kicker: .78rem;   /* tiny caps label */
+
+  /* Letter-spacing buckets for display/labels */
+  --track-kicker: 0.14em;
+  --track-label:  0.12em;
+  --track-nav:    0.12em;
+  --track-display: 0;       /* display face is already punchy */
+
+  /* ========== SPACING / LAYOUT ========== */
+  --max-width: 1160px;
+  --gutter:    clamp(1rem, 4vw, 2rem);
+  --stack-xs: .5rem;
+  --stack-sm: .75rem;
+  --stack-md: 1rem;
+  --stack-lg: 1.5rem;
+  --stack-xl: 2.5rem;
+  --stack-2xl: clamp(4rem, 8vw, 6.75rem); /* section padding */
+
+  /* ========== BORDERS / RADII / SHADOWS ========== */
+  /* The brand uses HEAVY black borders + hard offset shadows (brutalist). */
+  --border-w-sm: 2px;
+  --border-w-md: 3px;   /* buttons */
+  --border-w-lg: 4px;   /* cards */
+  --border-w-xl: 5px;   /* panels, section dividers */
+
+  --radius-0: 0;        /* almost nothing is rounded — keep edges HARD */
+  --radius-xs: 2px;     /* rare — only on tiny tags */
+  /* no large radii: rounded corners are off-brand */
+
+  --shadow-brut-sm:  7px  7px 0 var(--duro-black);
+  --shadow-brut-md:  9px  9px 0 var(--duro-black);
+  --shadow-brut-lg: 14px 14px 0 var(--duro-black);
+  --shadow-brut-yellow: 10px 10px 0 var(--duro-yellow);
+
+  /* ========== MOTION ========== */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur:      180ms;
+  --dur-slow: 260ms;
+
+  /* Hover lift: buttons + cards rise 2–3px, no color shift on primary */
+  --hover-lift: -2px;
+}
+
+/* ====================================================================
+   SEMANTIC TYPE — drop-in classes + element defaults
+==================================================================== */
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  color: var(--fg1);
+  background: var(--bg);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4,
+.h1, .h2, .h3, .h4 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  line-height: 1.05;
+  letter-spacing: var(--track-display);
+  text-transform: uppercase;
+  color: var(--fg1);
+}
+h1, .h1 { font-size: var(--fs-h1); }
+h2, .h2 { font-size: var(--fs-h2); }
+h3, .h3 { font-size: var(--fs-h3); }
+h4, .h4 { font-size: 1.1rem; }
+
+p { margin: 0 0 1rem; }
+.lead { font-size: var(--fs-lead); font-weight: 700; max-width: 620px; }
+
+.kicker {
+  display: inline-flex;
+  padding: .55rem .95rem;
+  background: var(--duro-black);
+  color: var(--duro-yellow);
+  font-family: var(--font-display);
+  font-size: var(--fs-kicker);
+  letter-spacing: var(--track-kicker);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.kicker--inverse {
+  background: var(--duro-yellow);
+  color: var(--duro-black);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: .68rem;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.meta {
+  color: var(--fg2);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--duro-bone); }     /* on dark */
+.on-light a:hover { color: var(--duro-black); opacity: .7; }

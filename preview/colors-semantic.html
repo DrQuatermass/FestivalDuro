@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css"><style>
+.demos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.demo { border: 3px solid var(--duro-black); padding: 16px; min-height: 120px; }
+.demo h4 { margin: 0 0 8px; font-family: var(--font-display); text-transform: uppercase; font-size: 14px; letter-spacing: .08em; }
+.demo p { margin: 0; font-size: 13px; line-height: 1.4; }
+.demo .m { color: var(--duro-grey); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; margin-top:6px;}
+.d-light { background: var(--duro-yellow); color: var(--duro-black); }
+.d-white { background: #fff; color: var(--duro-black); }
+.d-dark { background: var(--duro-black); color: var(--duro-bone); }
+.d-dark h4 { color: var(--duro-yellow); }
+.d-card { background: var(--duro-bone); color: var(--duro-black); }
+</style></head><body><div class="card">
+  <div class="demos">
+    <div class="demo d-light"><h4>Yellow Surface</h4><p>Testo fg1 su sfondo brand.</p><div class="m">fg2 · meta</div></div>
+    <div class="demo d-white"><h4>White Panel</h4><p>Sezioni home/info/lineup.</p><div class="m">fg2 · meta</div></div>
+    <div class="demo d-dark"><h4>Dark Section</h4><p style="color:var(--duro-bone)">Bone su nero.</p><div class="m">grey · meta</div></div>
+    <div class="demo d-card"><h4>Bone Card</h4><p>Band/info card interno.</p><div class="m">fg2 · meta</div></div>
+  </div>
+</div></body></html>
