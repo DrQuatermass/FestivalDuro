@@ -440,7 +440,7 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     position: relative;
     overflow: hidden;
     padding-block: clamp(4rem, 8vw, 6.75rem);
-    background: #fff;
+    background: var(--bone);
     color: var(--black);
 }
 
@@ -483,7 +483,7 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     align-items: center;
     gap: clamp(2rem, 5vw, 4rem);
     padding: clamp(2rem, 5vw, 4.5rem);
-    background: #fff;
+    background: var(--bone);
     border: 5px solid var(--black);
 }
 
