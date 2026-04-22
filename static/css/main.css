@@ -333,19 +333,18 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     width: min(100%, 780px);
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    background: var(--black);
+    gap: 3px;
+    background: var(--yellow);
     color: var(--yellow);
     border: 3px solid var(--black);
 }
 
 .hero__meta > div {
     min-height: 96px;
-    padding: 1rem 1.15rem;
+    padding: 1.05rem clamp(1.4rem, 3vw, 2rem);
+    background: var(--black);
     text-align: center;
-    border-right: 1px solid var(--yellow-dim);
 }
-
-.hero__meta > div:last-child { border-right: 0; }
 
 .hero__meta span {
     display: block;
@@ -1163,12 +1162,6 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 
     .hero__meta > div {
         min-height: 0;
-        border-right: 0;
-        border-bottom: 1px solid var(--yellow-dim);
-    }
-
-    .hero__meta > div:last-child {
-        border-bottom: 0;
     }
 
     .festival-panel {
