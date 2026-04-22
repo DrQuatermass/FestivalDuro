@@ -114,6 +114,7 @@
                     <li><a href="{% url 'core:home' %}"{% if url_name == 'home' %} class="is-active" aria-current="page"{% endif %}>Home</a></li>
                     <li><a href="{% url 'core:lineup' %}"{% if url_name == 'lineup' or url_name == 'band_detail' %} class="is-active" aria-current="page"{% endif %}>Line-up</a></li>
                     <li><a href="{% url 'core:past_editions' %}"{% if url_name == 'past_editions' %} class="is-active" aria-current="page"{% endif %}>Edizioni</a></li>
+                    <li><a href="{% url 'core:memorial' %}"{% if url_name == 'memorial' %} class="is-active" aria-current="page"{% endif %}>Per Oleg</a></li>
                     <li><a href="{% url 'core:info' %}"{% if url_name == 'info' %} class="is-active" aria-current="page"{% endif %}>Info &amp; Venue</a></li>
                 </ul>
             </nav>

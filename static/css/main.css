@@ -690,6 +690,46 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     object-fit: cover;
 }
 
+/* ============ MEMORIAL ============ */
+.memorial-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: stretch;
+}
+
+.memorial-panel__copy,
+.memorial-panel__support {
+    border: 4px solid var(--black);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.memorial-panel__copy {
+    background: var(--bone);
+    color: var(--black);
+}
+
+.memorial-panel__copy .hero__kicker {
+    margin-bottom: 1.25rem;
+}
+
+.memorial-panel__support {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--yellow);
+    color: var(--black);
+}
+
+.memorial-panel__support h3 {
+    margin-top: 0;
+}
+
+.memorial-panel__support .btn {
+    width: fit-content;
+    margin-top: .5rem;
+}
+
 /* ============ INFO CARD ============ */
 .info-card {
     position: relative;
@@ -1030,6 +1070,10 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     }
 
     .edition-card {
+        grid-template-columns: 1fr;
+    }
+
+    .memorial-panel {
         grid-template-columns: 1fr;
     }
 

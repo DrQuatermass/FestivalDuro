@@ -85,6 +85,20 @@ class PastEditionsView(ListView):
         return ctx
 
 
+class MemorialView(TemplateView):
+    template_name = "core/memorial.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx["page_title"] = "In memoria di Oleg - Festival Duro"
+        ctx["meta_description"] = (
+            "Festival Duro nasce per ricordare Oleg Egon Brando Salvino, "
+            "musicista, cantante e amico. Il ricavato sostiene Nordoff Robbins "
+            "Italia, sede di Modena."
+        )
+        return ctx
+
+
 class InfoView(TemplateView):
     template_name = "core/info.html"
 

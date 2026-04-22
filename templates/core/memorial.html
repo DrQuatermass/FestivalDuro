@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}memorial{% endblock %}
+
+{% block content %}
+<section class="hero page-hero">
+    <div class="container hero__inner">
+        <img src="{% static 'img/logo-black-wide-1200.png' %}"
+             alt="Festival Duro"
+             width="1200" height="120"
+             class="hero__logo hero__logo--wide">
+        <span class="hero__kicker">In memoria</span>
+        <h1 class="section__title">Per Oleg</h1>
+    </div>
+</section>
+
+<div class="divider divider--lights" aria-hidden="true"></div>
+
+<section class="section">
+    <div class="container">
+        <div class="memorial-panel">
+            <div class="memorial-panel__copy">
+                <span class="hero__kicker hero__kicker--inverse">Oleg Egon Brando Salvino</span>
+                <h2 class="section__title">La ragione da cui nasce Festival Duro</h2>
+                <p class="section__lead">
+                    Festival Duro nasce per ricordare Oleg Egon Brando Salvino:
+                    musicista, cantante e amico che ci ha lasciato nel 2022.
+                </p>
+                <p>
+                    Oleg era molto conosciuto nella scena musicale di Carpi. Suonava
+                    e cantava nei Coffee Overdrive, una band hard rock che ha lasciato
+                    un segno in chi ha condiviso palchi, prove, serate e pezzi di vita
+                    con lui.
+                </p>
+                <p>
+                    Questo festival vuole tenere viva quella presenza attraverso la
+                    musica: il linguaggio che Oleg ha scelto, abitato e regalato agli
+                    amici e alla sua comunità.
+                </p>
+            </div>
+            <div class="memorial-panel__support">
+                <h3>Il ricavato</h3>
+                <p>
+                    Il ricavato del festival viene devoluto a Nordoff Robbins Italia,
+                    sede di Modena, realtà che promuove la musicoterapia creativa e
+                    usa la musica come strumento di relazione, crescita e benessere.
+                </p>
+                <a href="https://www.nordoffrobbins.it/"
+                   class="btn"
+                   target="_blank"
+                   rel="noopener">Nordoff Robbins</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

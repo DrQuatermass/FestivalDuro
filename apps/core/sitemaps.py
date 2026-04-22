@@ -14,6 +14,7 @@ class StaticViewSitemap(Sitemap):
             "core:home",
             "core:lineup",
             "core:past_editions",
+            "core:memorial",
             "core:info",
             "core:privacy",
             "core:cookie_policy",
