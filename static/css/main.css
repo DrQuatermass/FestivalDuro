@@ -1,5 +1,10 @@
-/* Festival Duro - sistema grafico */
+/* Festival Duro - sistema grafico v2 (design system completo)
+   --------------------------------------------------------------
+   Palette, tipografia e componenti allineati al design system.
+   Sostituisce main.css precedente.
+*/
 
+/* ============ FONTS (self-hosted) ============ */
 @font-face {
     font-family: "Bungee Inline";
     src: url("../fonts/bungee-inline.woff2") format("woff2");
@@ -36,20 +41,25 @@
     font-display: swap;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
-
+/* ============ TOKENS ============ */
 :root {
     --yellow: #ffd400;
     --black: #050505;
     --bone: #f5f1e6;
     --grey: #898989;
     --line: rgba(5, 5, 5, .18);
+    --yellow-dim: rgba(255, 212, 0, .25);
+
     --display: "Rubik Mono One", Impact, sans-serif;
     --decor: "Bungee Inline", "Rubik Mono One", Impact, sans-serif;
     --body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
     --max: 1160px;
     --gutter: clamp(1rem, 4vw, 2rem);
 }
+
+/* ============ RESET / BASE ============ */
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
     scroll-behavior: smooth;
@@ -125,7 +135,7 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     border: 0;
 }
 
-/* Header */
+/* ============ HEADER ============ */
 .site-header {
     position: sticky;
     top: 0;
@@ -172,14 +182,24 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     display: inline-flex;
     align-items: center;
     min-height: 44px;
+    padding-block: 2px;
     color: var(--yellow);
     font-family: var(--display);
     font-size: .82rem;
     letter-spacing: .12em;
     text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    opacity: .85;
+    transition: opacity 150ms ease, border-color 150ms ease;
 }
 
-.site-nav a:hover,
+.site-nav a:hover { opacity: 1; }
+
+.site-nav a.is-active {
+    opacity: 1;
+    border-bottom-color: var(--yellow);
+}
+
 .social-list a:hover,
 .legal-links a:hover,
 .credits a:hover {
@@ -216,21 +236,49 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     background: currentColor;
 }
 
-/* Hero */
+/* ============ HERO BASE (tutti gli hero) ============ */
 .hero {
     position: relative;
     isolation: isolate;
-    min-height: min(460px, calc(72svh - 76px));
     display: grid;
     align-items: center;
     overflow: hidden;
-    padding-block: clamp(2.5rem, 4vw, 3.75rem);
+    padding-block: clamp(2.25rem, 4vw, 3.25rem);
     background: var(--yellow);
     border-bottom: 5px solid var(--black);
 }
 
+/* Corner ornaments (design system) - attivi su tutti gli hero */
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: contain;
+    width: min(28%, 360px);
+    aspect-ratio: 4 / 3;
+}
+
+.hero::before {
+    top: 0;
+    right: 0;
+    background-image: url("../img/hero-corner-tr.png");
+    background-position: top right;
+}
+
+.hero::after {
+    bottom: 0;
+    left: 0;
+    background-image: url("../img/hero-corner-bl.png");
+    background-position: bottom left;
+}
+
 .hero__inner {
     position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -251,6 +299,11 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     text-transform: uppercase;
 }
 
+.hero__kicker--inverse {
+    background: var(--yellow);
+    color: var(--black);
+}
+
 .hero__title {
     width: 100%;
     margin: 0;
@@ -261,19 +314,35 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     margin-inline: auto;
 }
 
+.hero__sub {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+/* HOME hero: più alto, con meta strip e CTA */
+.hero--home {
+    min-height: min(460px, calc(72svh - 76px));
+    padding-block: clamp(2.5rem, 4vw, 3.75rem);
+}
+
 .hero__meta {
-    width: min(100%, 860px);
+    width: min(100%, 780px);
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: .75rem;
+    background: var(--black);
+    color: var(--yellow);
+    border: 3px solid var(--black);
 }
 
 .hero__meta > div {
     min-height: 96px;
     padding: 1rem 1.15rem;
-    background: rgba(5, 5, 5, .96);
-    color: var(--yellow);
+    text-align: center;
+    border-right: 1px solid var(--yellow-dim);
 }
+
+.hero__meta > div:last-child { border-right: 0; }
 
 .hero__meta span {
     display: block;
@@ -281,17 +350,27 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     font-size: .68rem;
     letter-spacing: .11em;
     text-transform: uppercase;
+    opacity: .75;
 }
 
 .hero__meta strong {
     display: block;
-    margin-top: .25rem;
+    margin-top: .3rem;
     font-family: var(--display);
-    font-size: clamp(1.15rem, 2.3vw, 1.55rem);
+    font-size: clamp(1.05rem, 2vw, 1.45rem);
     line-height: 1.12;
-    letter-spacing: .07em;
+    letter-spacing: .05em;
     text-transform: uppercase;
     overflow-wrap: anywhere;
+}
+
+.hero__meta strong + span {
+    margin-top: .3rem;
+    font-weight: 700;
+    font-size: .72rem;
+    letter-spacing: .06em;
+    color: var(--bone);
+    opacity: .8;
 }
 
 .hero__cta {
@@ -301,7 +380,16 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     gap: .75rem;
 }
 
-/* Buttons */
+/* PAGE hero: più compatto, logo + kicker + titolo */
+.page-hero {
+    padding-block: clamp(2rem, 4vw, 3rem);
+}
+
+.page-hero .hero__logo {
+    max-width: 520px;
+}
+
+/* ============ BUTTONS ============ */
 .btn {
     min-height: 54px;
     display: inline-flex;
@@ -316,6 +404,7 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     letter-spacing: .12em;
     text-align: center;
     text-transform: uppercase;
+    cursor: pointer;
     transition: transform 180ms ease, background 180ms ease, color 180ms ease;
 }
 
@@ -334,16 +423,13 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     color: var(--yellow);
 }
 
-/* Sections */
+/* ============ SECTIONS ============ */
 .section {
     position: relative;
     overflow: hidden;
     padding-block: clamp(4rem, 8vw, 6.75rem);
-    background: var(--yellow);
-}
-
-.section::before {
-    display: none;
+    background: #fff;
+    color: var(--black);
 }
 
 .section > .container {
@@ -354,30 +440,6 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 .section--dark {
     background: var(--black);
     color: var(--bone);
-}
-
-.section--dark::before {
-    display: none;
-}
-
-.section--festival {
-    background: #fff;
-    color: var(--black);
-}
-
-.page-home .section,
-.page-lineup .section,
-.page-info .section {
-    background: #fff;
-    color: var(--black);
-}
-
-.page-home .hero + .section,
-.page-lineup .hero + .section,
-.page-info .hero + .section,
-.page-info .divider + .section {
-    border-top: 10px solid #fff;
-    padding-top: clamp(3rem, 5vw, 4.5rem);
 }
 
 .section__title {
@@ -400,10 +462,10 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     font-weight: 700;
 }
 
+/* ============ FESTIVAL PANEL ============ */
 .festival-panel {
     position: relative;
     overflow: hidden;
-    min-height: 0;
     display: grid;
     grid-template-columns: minmax(0, .95fr) minmax(280px, .68fr);
     align-items: center;
@@ -444,7 +506,7 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 
 .divider { display: none !important; }
 
-/* Cards */
+/* ============ BAND / INFO GRIDS ============ */
 .lineup-grid,
 .info-grid {
     display: grid;
@@ -452,20 +514,17 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     gap: clamp(1.25rem, 3vw, 2rem);
 }
 
-.band-card,
-.info-card {
+/* ============ BAND CARD ============ */
+.band-card {
     position: relative;
     overflow: hidden;
-    background: var(--bone);
-    color: var(--black);
-    border: 4px solid var(--black);
-}
-
-.band-card {
     min-height: 100%;
     display: flex;
     flex-direction: column;
     padding: 1.25rem;
+    background: var(--bone);
+    color: var(--black);
+    border: 4px solid var(--black);
     transition: transform 180ms ease;
 }
 
@@ -481,11 +540,16 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     border-bottom: 4px solid var(--black);
 }
 
-.band-card__img img,
-.band-detail__photo {
+.band-card__img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: grayscale(1) contrast(1.1);
+    transition: filter 220ms ease;
+}
+
+.band-card:hover .band-card__img img {
+    filter: grayscale(0) contrast(1.05);
 }
 
 .band-card__name {
@@ -511,20 +575,27 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     padding: .25rem .55rem;
     background: var(--yellow);
     color: var(--black);
+    border: 2px solid var(--black);
     font-family: var(--display);
     font-size: .72rem;
     text-transform: uppercase;
 }
 
+/* ============ INFO CARD ============ */
 .info-card {
+    position: relative;
+    overflow: hidden;
     padding: 2rem;
     background: var(--yellow);
+    color: var(--black);
+    border: 4px solid var(--black);
 }
 
 .info-card h3 {
     margin-top: 0;
 }
 
+/* ============ FAQ ============ */
 .faq-list,
 .social-list {
     list-style: none;
@@ -545,6 +616,15 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     cursor: pointer;
     font-family: var(--display);
     text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.faq-item summary:hover {
+    opacity: .85;
+}
+
+.faq-item p {
+    margin: .6rem 0 0;
 }
 
 .empty-state {
@@ -553,7 +633,7 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     font-weight: 700;
 }
 
-/* Band detail */
+/* ============ BAND DETAIL ============ */
 .band-detail {
     min-height: 70vh;
 }
@@ -569,11 +649,6 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     text-transform: uppercase;
 }
 
-.hero__kicker--inverse {
-    background: var(--yellow);
-    color: var(--black);
-}
-
 .band-detail__grid {
     display: grid;
     grid-template-columns: minmax(240px, .8fr) minmax(0, 1.2fr);
@@ -582,15 +657,29 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 }
 
 .band-detail__photo {
+    width: 100%;
     aspect-ratio: 4 / 3;
+    object-fit: cover;
     border: 4px solid var(--yellow);
+    filter: grayscale(1) contrast(1.1);
 }
 
 .band-detail__links {
     margin-top: 1.25rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
-/* Footer */
+.band-detail__links a {
+    color: var(--yellow);
+}
+
+.band-detail__links a:hover {
+    color: var(--bone);
+}
+
+/* ============ FOOTER ============ */
 .site-footer {
     margin-top: 0;
     background: var(--black);
@@ -622,7 +711,7 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 }
 
 .site-footer__bottom {
-    border-top: 1px solid rgba(255, 212, 0, .2);
+    border-top: 1px solid var(--yellow-dim);
     padding-block: 1rem;
     color: var(--grey);
     font-size: .85rem;
@@ -650,7 +739,7 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     color: var(--yellow);
 }
 
-/* Legal pages */
+/* ============ LEGAL PAGES ============ */
 .legal-content {
     max-width: 820px;
     font-size: 1.02rem;
@@ -695,7 +784,7 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     text-transform: uppercase;
 }
 
-/* Responsive */
+/* ============ RESPONSIVE ============ */
 @media (max-width: 820px) {
     .site-header__inner {
         min-height: 68px;
@@ -740,25 +829,28 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
         width: 100%;
         min-height: 42px;
         justify-content: flex-start;
+        border-bottom: 0;
+        border-left: 3px solid transparent;
+        padding-left: .5rem;
     }
 
-    .hero {
+    .site-nav a.is-active {
+        border-bottom: 0;
+        border-left-color: var(--yellow);
+    }
+
+    .hero--home {
         min-height: auto;
         padding-block: clamp(2rem, 8vw, 3.25rem);
-        background: var(--yellow);
     }
 
-    .hero__inner,
-    .hero__title,
-    .hero__cta {
-        align-items: center;
-        justify-content: center;
-        text-align: center;
+    .hero::before,
+    .hero::after {
+        width: min(40%, 200px);
     }
 
     .hero__logo {
         width: min(100%, 520px);
-        margin-inline: auto;
     }
 
     .hero__meta {
@@ -768,12 +860,16 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 
     .hero__meta > div {
         min-height: 0;
-        text-align: center;
+        border-right: 0;
+        border-bottom: 1px solid var(--yellow-dim);
+    }
+
+    .hero__meta > div:last-child {
+        border-bottom: 0;
     }
 
     .festival-panel {
         grid-template-columns: 1fr;
-        background: #fff;
     }
 
     .festival-panel__copy {

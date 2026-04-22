@@ -88,6 +88,7 @@
 
     <a href="#main" class="skip-link">Salta al contenuto</a>
 
+    {% with url_name=request.resolver_match.url_name %}
     <header class="site-header">
         <div class="container site-header__inner">
             <a href="{% url 'core:home' %}" class="brand" aria-label="Festival Duro - homepage">
@@ -110,13 +111,14 @@
 
             <nav id="primary-nav" class="site-nav" aria-label="Navigazione principale">
                 <ul>
-                    <li><a href="{% url 'core:home' %}">Home</a></li>
-                    <li><a href="{% url 'core:lineup' %}">Line-up</a></li>
-                    <li><a href="{% url 'core:info' %}">Info &amp; Venue</a></li>
+                    <li><a href="{% url 'core:home' %}"{% if url_name == 'home' %} class="is-active" aria-current="page"{% endif %}>Home</a></li>
+                    <li><a href="{% url 'core:lineup' %}"{% if url_name == 'lineup' or url_name == 'band_detail' %} class="is-active" aria-current="page"{% endif %}>Line-up</a></li>
+                    <li><a href="{% url 'core:info' %}"{% if url_name == 'info' %} class="is-active" aria-current="page"{% endif %}>Info &amp; Venue</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+    {% endwith %}
 
     <main id="main">
         {% block content %}{% endblock %}
