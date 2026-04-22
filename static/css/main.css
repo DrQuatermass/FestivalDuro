@@ -238,6 +238,8 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 
 /* ============ HERO BASE (tutti gli hero) ============ */
 .hero {
+    --hero-deco-top-width: clamp(220px, 26vw, 480px);
+    --hero-deco-bottom-width: clamp(340px, 38vw, 700px);
     position: relative;
     isolation: isolate;
     display: grid;
@@ -256,22 +258,23 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     z-index: 0;
     pointer-events: none;
     background-repeat: no-repeat;
-    background-position: top right;
     background-size: contain;
-    width: min(28%, 360px);
-    aspect-ratio: 4 / 3;
 }
 
 .hero::before {
     top: 0;
     right: 0;
+    width: var(--hero-deco-top-width);
+    aspect-ratio: 983 / 731;
     background-image: url("../img/hero-corner-tr.png");
     background-position: top right;
 }
 
 .hero::after {
-    bottom: 0;
-    left: 0;
+    bottom: -15%;
+    left: -2%;
+    width: var(--hero-deco-bottom-width);
+    aspect-ratio: 722 / 1169;
     background-image: url("../img/hero-corner-bl.png");
     background-position: bottom left;
 }
@@ -838,9 +841,19 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
         padding-block: clamp(2rem, 8vw, 3.25rem);
     }
 
-    .hero::before,
+    .hero {
+        --hero-deco-top-width: clamp(120px, 34vw, 190px);
+        --hero-deco-bottom-width: clamp(150px, 38vw, 220px);
+    }
+
+    .hero::before {
+        top: -28px;
+        right: -44px;
+    }
+
     .hero::after {
-        width: min(40%, 200px);
+        bottom: -88px;
+        left: -72px;
     }
 
     .hero__logo {
@@ -905,6 +918,15 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 
     .hero__logo {
         max-width: 315px;
+    }
+
+    .page-hero .hero__logo {
+        max-width: 260px;
+    }
+
+    .hero::before,
+    .hero::after {
+        display: none;
     }
 
     .hero__kicker {
