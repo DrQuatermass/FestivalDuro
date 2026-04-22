@@ -730,6 +730,84 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     margin-top: .5rem;
 }
 
+.memorial-panel__photos {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+}
+
+.memorial-panel__photos figure {
+    margin: 0;
+    background: var(--black);
+    border: 4px solid var(--black);
+    box-shadow: 10px 10px 0 var(--black);
+}
+
+.memorial-panel__photos figure:nth-child(2) {
+    width: min(76%, 260px);
+    justify-self: end;
+    margin-top: -2rem;
+    border-color: var(--yellow);
+}
+
+.memorial-panel__photos img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.08);
+}
+
+.memorial-music {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, .55fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+}
+
+.memorial-discography {
+    padding: 1.5rem;
+    background: var(--yellow);
+    color: var(--black);
+    border: 4px solid var(--yellow);
+}
+
+.memorial-discography h3 {
+    margin-top: 0;
+}
+
+.memorial-discography ul {
+    display: grid;
+    gap: .75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.memorial-discography a {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .8rem .9rem;
+    background: var(--black);
+    color: var(--yellow);
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.memorial-discography a:hover {
+    background: var(--bone);
+    color: var(--black);
+}
+
+.memorial-discography span {
+    color: currentColor;
+    opacity: .72;
+}
+
+.memorial-panel--support .btn {
+    margin-top: .75rem;
+}
+
 /* ============ INFO CARD ============ */
 .info-card {
     position: relative;
@@ -1077,6 +1155,15 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
         grid-template-columns: 1fr;
     }
 
+    .memorial-music {
+        grid-template-columns: 1fr;
+    }
+
+    .memorial-panel__photos {
+        max-width: 520px;
+        justify-self: center;
+    }
+
     .edition-card__poster {
         width: min(100%, 260px);
         justify-self: center;
@@ -1151,6 +1238,16 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     .festival-panel,
     .info-card {
         padding: 1.35rem;
+    }
+
+    .memorial-panel__photos figure:nth-child(2) {
+        width: min(70%, 220px);
+        margin-top: 0;
+    }
+
+    .memorial-discography a {
+        flex-direction: column;
+        gap: .25rem;
     }
 
     .festival-panel__media {
