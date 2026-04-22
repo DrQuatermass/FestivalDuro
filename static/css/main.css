@@ -764,6 +764,91 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     align-items: start;
 }
 
+.memorial-band-logo {
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: 1.25rem;
+    color: var(--yellow);
+    font-family: var(--display);
+    line-height: .9;
+    text-transform: uppercase;
+}
+
+.memorial-band-logo span,
+.memorial-band-logo strong {
+    display: block;
+}
+
+.memorial-band-logo span {
+    font-size: clamp(1.2rem, 2.8vw, 2rem);
+    letter-spacing: .12em;
+}
+
+.memorial-band-logo strong {
+    font-size: clamp(2rem, 5vw, 4rem);
+    letter-spacing: 0;
+}
+
+.memorial-band-logo--coffee {
+    padding: .75rem 0;
+    text-shadow: 3px 0 0 rgba(255, 212, 0, .35);
+}
+
+.memorial-band-logo--crocicchio {
+    color: var(--black);
+    transform: skewX(-8deg);
+}
+
+.memorial-band-logo--crocicchio span {
+    letter-spacing: .18em;
+}
+
+.spotify-link {
+    width: fit-content;
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    gap: .65rem;
+    margin-top: .5rem;
+    padding: .7rem 1rem;
+    background: var(--yellow);
+    color: var(--black);
+    border: 3px solid var(--yellow);
+    font-family: var(--display);
+    font-size: .78rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.spotify-link:hover {
+    background: var(--bone);
+    color: var(--black);
+    transform: translateY(-2px);
+}
+
+.spotify-link--dark {
+    margin-left: .5rem;
+    background: var(--black);
+    color: var(--yellow);
+    border-color: var(--black);
+}
+
+.spotify-link--dark:hover {
+    background: var(--bone);
+    color: var(--black);
+}
+
+.spotify-link svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
 .memorial-discography {
     padding: 1.5rem;
     background: var(--yellow);
@@ -1248,6 +1333,13 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     .memorial-discography a {
         flex-direction: column;
         gap: .25rem;
+    }
+
+    .spotify-link,
+    .spotify-link--dark {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
     }
 
     .festival-panel__media {
