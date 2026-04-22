@@ -11,7 +11,7 @@ admin.site.index_title = "Gestione del festival"
 class BandInline(admin.TabularInline):
     model = Band
     extra = 0
-    fields = ("nome", "headliner", "giorno", "orario", "ordine")
+    fields = ("nome", "visibile", "headliner", "giorno", "orario", "ordine")
     show_change_link = True
 
 
@@ -36,13 +36,24 @@ class EdizioneAdmin(admin.ModelAdmin):
 
 @admin.register(Band)
 class BandAdmin(admin.ModelAdmin):
-    list_display = ("nome", "edizione", "giorno", "orario", "headliner", "ordine")
-    list_filter = ("edizione", "headliner", "giorno")
+    list_display = (
+        "nome",
+        "edizione",
+        "giorno",
+        "orario",
+        "visibile",
+        "headliner",
+        "ordine",
+    )
+    list_filter = ("edizione", "visibile", "headliner", "giorno")
     search_fields = ("nome",)
     prepopulated_fields = {"slug": ("nome",)}
-    list_editable = ("headliner", "ordine")
+    list_editable = ("visibile", "headliner", "ordine")
     fieldsets = (
-        (None, {"fields": ("nome", "slug", "edizione", "headliner", "ordine")}),
+        (
+            None,
+            {"fields": ("nome", "slug", "edizione", "visibile", "headliner", "ordine")},
+        ),
         ("Performance", {"fields": ("giorno", "orario")}),
         ("Contenuti", {"fields": ("bio", "foto")}),
         ("Link", {"fields": ("sito_web", "instagram", "spotify", "youtube")}),

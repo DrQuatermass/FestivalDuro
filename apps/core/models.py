@@ -83,6 +83,7 @@ class Band(models.Model):
     giorno = models.DateField(null=True, blank=True)
     orario = models.TimeField(null=True, blank=True)
     headliner = models.BooleanField(default=False)
+    visibile = models.BooleanField("Visibile sul sito", default=True)
     ordine = models.PositiveIntegerField(
         default=0, help_text="Ordine di visualizzazione in line-up"
     )

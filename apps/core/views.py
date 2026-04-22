@@ -13,7 +13,7 @@ class HomeView(TemplateView):
         edizione = Edizione.objects.filter(is_corrente=True).first()
         ctx["edizione"] = edizione
         ctx["headliners"] = (
-            Band.objects.filter(edizione=edizione, headliner=True)
+            Band.objects.filter(edizione=edizione, visibile=True, headliner=True)
             if edizione
             else Band.objects.none()
         )
@@ -33,7 +33,7 @@ class LineUpView(ListView):
         edizione = Edizione.objects.filter(is_corrente=True).first()
         if not edizione:
             return Band.objects.none()
-        return Band.objects.filter(edizione=edizione)
+        return Band.objects.filter(edizione=edizione, visibile=True)
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -49,6 +49,9 @@ class BandDetailView(DetailView):
     model = Band
     template_name = "core/band_detail.html"
     context_object_name = "band"
+
+    def get_queryset(self):
+        return super().get_queryset().filter(visibile=True)
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
