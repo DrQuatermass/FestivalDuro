@@ -45,7 +45,7 @@
                         <h3>Line-up</h3>
                         <ul>
                             {% for band in band_list %}
-                            <li>{{ band.nome }}</li>
+                            <li><a href="{{ band.get_absolute_url }}">{{ band.nome }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

@@ -659,11 +659,21 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 }
 
 .edition-card__bands li {
-    padding: .35rem .55rem;
     background: var(--yellow);
     border: 2px solid var(--black);
     font-weight: 700;
     font-size: .82rem;
+}
+
+.edition-card__bands a {
+    display: inline-flex;
+    padding: .35rem .55rem;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.edition-card__bands a:hover {
+    background: var(--black);
+    color: var(--yellow);
 }
 
 .edition-card__poster {
