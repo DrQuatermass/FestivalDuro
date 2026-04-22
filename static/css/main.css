@@ -835,6 +835,23 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     margin-top: .75rem;
 }
 
+.memorial-closing-section {
+    padding-block: clamp(3rem, 6vw, 5rem);
+    background: var(--black);
+    color: var(--yellow);
+    border-top: 5px solid var(--yellow);
+}
+
+.memorial-closing {
+    max-width: 940px;
+    margin: 0 auto;
+    font-family: var(--display);
+    font-size: clamp(1.6rem, 4.5vw, 4rem);
+    line-height: 1.08;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 /* ============ INFO CARD ============ */
 .info-card {
     position: relative;
