@@ -29,7 +29,7 @@
                     {{ venue.cap }} {{ venue.citta }} {% if venue.provincia %}({{ venue.provincia }}){% endif %}
                 </p>
                 {% if venue.google_maps_url %}
-                <a href="{{ venue.google_maps_url }}" class="btn" rel="noopener">Apri mappa</a>
+                <a href="{{ venue.google_maps_url }}" class="btn" target="_blank" rel="noopener">Apri mappa</a>
                 {% endif %}
             </div>
             {% endif %}
@@ -51,7 +51,7 @@
                 <h3>Contatti</h3>
                 <p>
                     Per info, prenotazioni o richieste di backstage scrivi a<br>
-                    <strong>info@festivalduro.it</strong>
+                    <strong><a href="mailto:info@festivalduro.it">info@festivalduro.it</a></strong>
                 </p>
             </div>
         </div>
