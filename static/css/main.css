@@ -674,24 +674,24 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 .band-detail__links {
     margin-top: 1.25rem;
     display: flex;
-    gap: .75rem;
+    gap: .9rem;
     flex-wrap: wrap;
 }
 
 .band-detail__links a {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     color: var(--yellow);
-    border: 3px solid currentColor;
+    border: 0;
     transition: background 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 .band-detail__links a:hover {
-    background: var(--yellow);
-    color: var(--black);
+    background: transparent;
+    color: var(--bone);
     transform: translateY(-2px);
 }
 
@@ -703,6 +703,12 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
+}
+
+.band-detail__links .icon-fill,
+.band-detail__links .icon-dot {
+    fill: currentColor;
+    stroke: none;
 }
 
 /* ============ FOOTER ============ */
