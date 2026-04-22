@@ -239,7 +239,7 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 /* ============ HERO BASE (tutti gli hero) ============ */
 .hero {
     --hero-deco-top-width: clamp(220px, 26vw, 480px);
-    --hero-deco-bottom-width: clamp(340px, 38vw, 700px);
+    --hero-deco-bottom-width: clamp(220px, 22vw, 420px);
     position: relative;
     isolation: isolate;
     display: grid;
@@ -271,8 +271,8 @@ h3 { font-size: clamp(1.15rem, 2.5vw, 1.6rem); }
 }
 
 .hero::after {
-    bottom: -15%;
-    left: -2%;
+    bottom: -32%;
+    left: -1%;
     width: var(--hero-deco-bottom-width);
     aspect-ratio: 722 / 1169;
     background-image: url("../img/hero-corner-bl.png");
