@@ -1,5 +1,5 @@
 """Views del sito Festival Duro."""
-from django.shortcuts import get_object_or_404, render
+from django.db.models import Prefetch
 from django.views.generic import DetailView, ListView, TemplateView
 
 from .models import Band, Edizione, FAQ, Venue
@@ -59,6 +59,28 @@ class BandDetailView(DetailView):
         ctx["meta_description"] = (
             f"{self.object.nome} sul palco di Festival Duro 2026. "
             f"Scopri la band e gli orari del live."
+        )
+        return ctx
+
+
+class PastEditionsView(ListView):
+    template_name = "core/past_editions.html"
+    context_object_name = "edizioni"
+
+    def get_queryset(self):
+        visible_bands = Band.objects.filter(visibile=True)
+        return (
+            Edizione.objects.filter(is_corrente=False)
+            .select_related("venue")
+            .prefetch_related(Prefetch("band", queryset=visible_bands))
+        )
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx["page_title"] = "Vecchie edizioni - Festival Duro"
+        ctx["meta_description"] = (
+            "Archivio delle edizioni passate di Festival Duro: date, location "
+            "e band che sono salite sul palco."
         )
         return ctx
 

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}past-editions{% endblock %}
+
+{% block content %}
+<section class="hero page-hero">
+    <div class="container hero__inner">
+        <img src="{% static 'img/logo-black-wide-1200.png' %}"
+             alt="Festival Duro"
+             width="1200" height="120"
+             class="hero__logo hero__logo--wide">
+        <span class="hero__kicker">Archivio</span>
+        <h1 class="section__title">Vecchie edizioni</h1>
+    </div>
+</section>
+
+<div class="divider divider--lights" aria-hidden="true"></div>
+
+<section class="section">
+    <div class="container">
+        {% if edizioni %}
+        <div class="edition-grid">
+            {% for edizione in edizioni %}
+            <article class="edition-card">
+                <div class="edition-card__body">
+                    <span class="edition-card__kicker">{{ edizione.numero }}&ordf; edizione</span>
+                    <h2>{{ edizione.titolo|default:"Festival Duro" }}</h2>
+                    <p class="edition-card__meta">
+                        {{ edizione.data_inizio|date:"j F Y" }}
+                        {% if edizione.data_fine != edizione.data_inizio %}
+                        - {{ edizione.data_fine|date:"j F Y" }}
+                        {% endif %}
+                    </p>
+                    <p class="edition-card__venue">
+                        {{ edizione.venue.nome }}<br>
+                        {{ edizione.venue.citta }}{% if edizione.venue.provincia %} ({{ edizione.venue.provincia }}){% endif %}
+                    </p>
+                    {% if edizione.descrizione %}
+                    <p>{{ edizione.descrizione|linebreaksbr }}</p>
+                    {% endif %}
+                    {% with band_list=edizione.band.all %}
+                    {% if band_list %}
+                    <div class="edition-card__bands">
+                        <h3>Line-up</h3>
+                        <ul>
+                            {% for band in band_list %}
+                            <li>{{ band.nome }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                {% if edizione.locandina %}
+                <figure class="edition-card__poster">
+                    <img src="{{ edizione.locandina.url }}"
+                         alt="Locandina {{ edizione.numero }}&ordf; edizione Festival Duro"
+                         loading="lazy">
+                </figure>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="festival-panel">
+            <div class="festival-panel__copy">
+                <h2 class="section__title">Archivio in arrivo</h2>
+                <p class="section__lead">
+                    Le vecchie edizioni saranno pubblicate qui appena disponibili.
+                </p>
+                <a href="{% url 'core:lineup' %}" class="btn">Line-up attuale</a>
+            </div>
+            <figure class="festival-panel__media">
+                <img src="{% static 'img/locandina.png' %}"
+                     alt="Locandina Festival Duro"
+                     width="960" height="1200"
+                     loading="lazy">
+            </figure>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
